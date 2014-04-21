@@ -2,14 +2,19 @@ var io = require('socket.io').listen(5747);
 
 io.sockets.on('connection', function (socket) {
 
-    socket.on('put-status', function (data) {
+    var mainSocket = socket;
+
+    mainSocket.on('put-status', function (data) {
+
+        mainSocket.emit('remote-server-status', { status: 'online' });
+        this.emit("status-update", data);
 
         console.log( "Status Update" );
         console.log( data );
 
-    });
+    }.bind(mainSocket));
 
-    socket.emit('remote-server-status', { status: 'online' });
+    mainSocket.emit('remote-server-status', { status: 'online' });
 
 });
 

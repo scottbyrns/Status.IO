@@ -12,7 +12,7 @@ var socketClient = socketClientIO.connect('http://localhost:5747');
 
 
 // Listen.
-server.listen(9124);
+server.listen(8080);
 
 // Configure IO.
 io.set('log level', 2); // Debug = 3
